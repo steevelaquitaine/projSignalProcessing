@@ -51,13 +51,15 @@
         </p>
         
         <h6><a id="Make-and-process-a-toy-image-signal" class="anchor" href="#Make-and-process-a-toy-image-signal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MAKE AND PROCESS A TOY IMAGE SIGNAL</h3>  
-        <p> I made a wedge (200 pix, 20 deg angle span) pointed toward 90 deg, and I characterize that wedge with two types of signals :
+        <p> I simulated a more or less bright wedge superimposed on a gray background because it is a simple and 
+        controlled example of a visual signal. The wedge points toward 90 deg, has a radius of 200 pixels and an 
+        angle span of 20 deg, and the two most obvious visual signals that I can think of to characterize it are :
         <ul>
-          <li> The spatial pattern formed by the intensities of the pixels that compose the wedge </li>
-          <li> The intensities of the wedge pixels relative to the gray background (the wedge contrast) </li>
+          <li> The spatial pattern formed by the intensities of the pixels that compose the wedge (its statistics) </li>
+          <li> The intensities of the pixels of the wedge relative to the intensity of the gray background (its contrast) </li>
         </ul>
         
-        <p> <strong> Wedge's spatial pattern of intensities.</strong> I filled the wedge with random intensity values, and decomposed it in a 
+        <p> <strong> The visual signal's spatial pattern of intensities.</strong> I filled the wedge with random intensity values, and decomposed it in a 
         series of simpler and well formalized sinewave signals with different spatial frequencies. I then removed all the high spatial frequencies to only look 
         at the sinewage components of the wedge with low spatial frequencies (i.e, low-pass filtered the visual signal). The decomposition of the visual signal 
         into sinewave components can be done by the fourier transform (fft2 in matlab)</p>
@@ -94,7 +96,7 @@
             >> w(w==1) = lowFreqComp(w==1);
         </code>
         
-        <p><strong> The wedge contrast (its intensity relative to the background) can also manipulated by simply scaling the max 
+        <p><strong> The visual signal's contrast (its intensity relative to the background) can also manipulated by simply scaling the max 
         and minimum intensity values of the wedge </strong> : e.g., a contrast of 1% is obtained scaling the wedge intensities between 
         $I_{max} = meanwI - 0.01/2$ and $I_{min} = meanwI + 0.01/2$. The contrast are typically quantified and controlled 
         by Weber or Michelson equations $(I - Ib)/Ib)$ and $(Imax - Imin)/(Imax + Imin)$ respectively where $I$ and $I_{max}$
