@@ -33,7 +33,7 @@
       <section id="table_of_content" class="inner">
         <h5> TABLE OF CONTENTS </h5>
         <h6><a href="#Signal-processing"> SIGNALS <br></h7>
-        <h6><a href="#Create-and-process-a-toy-image-signal-"> CREATE AND PROCESS A TOY IMAGE SIGNAL <br></h7>
+        <h6><a href="#Make-and-process-a-toy-image-signal"> MAKE AND PROCESS A TOY IMAGE SIGNAL <br></h7>
       </section>
     </div>
     
@@ -43,10 +43,18 @@
       <section id="main_content" class="inner">
           
         <h6><a id="Signal-processing" class="anchor" href="#Signal-processing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SIGNALS</h3>  
-        <p> Three main theories have been proposed as to how humans solve inference problems. 1) Humans might be rational : they use optimal statistical solutions to inference problems or 2) 
-        irrational and produce maladaptive solutions to inference problems or 3) they use heuristics computational shortcuts that approximate optimal solutions. This fits in with Herbert 
-        Simon theory of bounded rationality according to which humans use satisficing solutions (sufficient and satisfying) (Gigerenzer, Psychological 
-        review 1996)</p>
+        <p> Various signals
+        <ul>
+          <li> Images (videos are successions of images) </li>
+          <li> Time series (financial transactions, stock prices, physiological responses) </li>
+        </ul>
+        </p>
+        
+        <h6><a id="Make-and-process-a-toy-image-signal" class="anchor" href="#Make-and-process-a-toy-image-signal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MAKE AND PROCESS A TOY IMAGE SIGNAL</h3>  
+        <p> I made a noisy wedge (2.5 deg radius, 5 deg angle span) on a gray background. I filled it with random values, low pass-filtered 
+        the wedge with a 2D Gaussian filter function (30 deg std, centered on zero frequency) and superimposed the filtered wedge on a gray background. Noise was further added to the wedge 
+        stimulus by manipulating its contrast from 1%, 15.6% to 100% contrast across trials based on Michelson (Imax - Imin)/(Imax + Imin) (or Weber produce the same results 
+        in our case: (I - Ib)/Ib) where I is the intensity (Ib background Intensity).</p>
           
       </section>
     </div>
