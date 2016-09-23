@@ -43,7 +43,7 @@
       <section id="main_content" class="inner">
           
         <h6><a id="Signal-processing" class="anchor" href="#Signal-processing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SIGNALS</h3>  
-        <p> Various signals
+        Various signals
         <ul>
           <li> Images (videos are successions of images) </li>
           <li> Time series (financial transactions, stock prices, physiological responses) </li>
@@ -51,10 +51,54 @@
         </p>
         
         <h6><a id="Make-and-process-a-toy-image-signal" class="anchor" href="#Make-and-process-a-toy-image-signal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MAKE AND PROCESS A TOY IMAGE SIGNAL</h3>  
-        <p> I made a noisy wedge (2.5 deg radius, 5 deg angle span) on a gray background. I filled it with random values, low pass-filtered 
-        the wedge with a 2D Gaussian filter function (30 deg std, centered on zero frequency) and superimposed the filtered wedge on a gray background. Noise was further added to the wedge 
-        stimulus by manipulating its contrast from 1%, 15.6% to 100% contrast across trials based on Michelson (Imax - Imin)/(Imax + Imin) (or Weber produce the same results 
-        in our case: (I - Ib)/Ib) where I is the intensity (Ib background Intensity).</p>
+        <p> I made a wedge (200 pix, 20 deg angle span) pointed toward 90 deg, and I characterize that wedge with two types of signals :
+        <ul>
+          <li> The spatial pattern formed by the intensities of the pixels that compose the wedge </li>
+          <li> The intensities of the wedge pixels relative to the gray background (the wedge contrast) </li>
+        </ul>
+        
+        <p> <strong> Wedge's spatial pattern of intensities.</strong> I filled the wedge with random intensity values, and decomposed it in a 
+        series of simpler and well formalized sinewave signals with different spatial frequencies. I then removed all the high spatial frequencies to only look 
+        at the sinewage components of the wedge with low spatial frequencies (i.e, low-pass filtered the visual signal). The decomposition of the visual signal 
+        into sinewave components can be done by the fourier transform (fft2 in matlab)</p>
+        
+        The wedge is first defined by the 1-valued elements (high intensity) of a 400 rows x 400 columns matrix: 
+        
+        <!--Code-->
+        <code class="code">
+            >> w = slGraphWedges2(400,400,200,90,20);
+            >> imagesc(w); colormap('gray')
+        </code>
+        
+        <p> Decompose the visual signal into spatial sinewave components with different frequencies (fourier transformation),
+        create a 2D-Gaussian matrix mask (30 deg std) that overweights zero frequencies (2D Gaussians centered at zero frequencies)
+        and underweights (weights near zero) high frequencies, and apply that mask onto my fourier transformed signa to remove high 
+        frequencies and let low frequencies pass through (Hadamard product of the two matrices). </p>
+        
+        <!--Code-->
+        <code class="code">
+          %0 and 1 random intensity matrix
+          >> randIntensities = rand(400,400) > 0.5; <br><br>
+          
+          %Keep the low spatial frequency components of the random intensity matrix
+          >> lowFreqComp = slFourierFilt(randIntensities,30,'gausWeights')
+        </code
+        
+        Now fill the background with an average intensity (near gray) and the wedge with the low spatial 
+        frequency visual components :
+        
+        <!--Codes-->
+        <code class="code">
+            >> meanwI = mean(mean(lowFreqComp(w==1)));
+            >> wf = repmat(meanwI,400,400);
+            >> w(w==1) = lowFreqComp(w==1);
+        </code>
+        
+        <p><strong> The wedge contrast (its intensity relative to the background) can also manipulated by simply scaling the max 
+        and minimum intensity values of the wedge </strong> : e.g., a contrast of 1% is obtained scaling the wedge intensities between 
+        $I_{max} = meanwI - 0.01/2$ and $I_{min} = meanwI + 0.01/2$. The contrast are typically quantified and controlled 
+        by Weber or Michelson equations $(I - Ib)/Ib)$ and $(Imax - Imin)/(Imax + Imin)$ respectively where $I$ and $I_{max}$
+        are the max intensities, $I_b$ is the background intensity and $I_{min}$ is the minimal intensity. </p>
           
       </section>
     </div>
