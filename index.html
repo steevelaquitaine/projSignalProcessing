@@ -102,8 +102,8 @@
         
         <!--Code-->
         <code class="code">
-            >> w = slGraphWedges2(400,400,200,90,20);
-            >> imagesc(w); colormap('gray')
+            >> w = slGraphWedges2(400,400,200,90,20); <br>
+            >> imagesc(w); colormap('gray') 
         </code>
         
         <p> Decompose the visual signal into spatial sinewave components with different frequencies (fourier transformation),
@@ -113,10 +113,10 @@
         
         <!--Code-->
         <code class="code">
-          %0 and 1 random intensity matrix
+          %0 and 1 random intensity matrix <br>
           >> randIntensities = rand(400,400) > 0.5; <br><br>
           
-          %Keep the low spatial frequency components of the random intensity matrix
+          %Keep the low spatial frequency components of the random intensity matrix <br>
           >> lowFreqComp = slFourierFilt(randIntensities,30,'gausWeights')
         </code
         
@@ -125,9 +125,9 @@
         
         <!--Codes-->
         <code class="code">
-            >> meanwI = mean(mean(lowFreqComp(w==1)));
-            >> wf = repmat(meanwI,400,400);
-            >> w(w==1) = lowFreqComp(w==1);
+            >> meanwI = mean(mean(lowFreqComp(w==1))); <br>
+            >> wf = repmat(meanwI,400,400); <br>
+            >> w(w==1) = lowFreqComp(w==1); <br>
         </code>
         
         <p><strong> The visual signal's contrast (its intensity relative to the background) can also manipulated by simply scaling the max 
